@@ -1,0 +1,158 @@
+﻿@model aioi_insurance.Models.db.Contract
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout ="_Layout-Iframe";
+} 
+<style>
+body {
+  margin: 0 !important;
+}
+</style>
+
+<div class="mb-3">
+   <span class="text-danger">@ViewBag.message</span> 
+  
+   
+   <form asp-controller="Register" asp-action="CreateContract" method="post">
+   <div asp-validation-summary="ModelOnly" class="text-danger py-3"></div>
+
+<div class="card">
+      <div class="card-header">
+        ซื้อประกันภัย
+      </div>  
+       
+    <div class="content p-3"> 
+         <input class="form-control" type="text" id="CusId" asp-for="CusId" value="x" hidden> 
+         <input class="form-control" type="text" id="ContractId" asp-for="ContractId" value="@Guid.NewGuid().ToString()" hidden> 
+           <div class="row form-group pb-2"> 
+              <div class="col-md-2">
+                <p class="p-0 m-0">ประเภทประกันภัย</p>
+                <p class="eng-label p-0 m-0">Insurance Type</p>
+             </div>
+             <div class="col-md-4">  
+                 <span asp-validation-for="TypeId" class="text-danger"></span>
+                  <select id="TypeId" asp-for="TypeId" asp-items="@ViewBag.type" class="form-control" onchange="tooglePriceInput()"> 
+                       <option value="0">Selcet one</option>
+                 </select>
+            </div>
+
+            <div class="col-md-2">
+                <p  class="p-0 m-0">ราคาประกันภัย</p>
+                <p class="eng-label p-0 m-0">Insurance Price</p>
+             </div>
+
+            <div class="col-md-4">
+                 <span asp-validation-for="Price" class="text-danger"></span>
+                  <input class="form-control" type="number" id="Price" asp-for="Price" disabled> 
+            </div>  
+
+         </div>
+
+           <div class="row form-group pb-2">                
+             <div class="col-md-2">
+                <p for="LicenseNo" class="p-0 m-0">ทะเบียนรถ</p>
+                <p for="LicenseNo" class="eng-label p-0 m-0">lincense Plate</p>
+             </div>
+
+            <div class="col-md-4">
+                 <span asp-validation-for="LicenseNo" class="text-danger"></span>
+                  <input class="form-control" type="text" id="LicenseNo" asp-for="LicenseNo"> 
+            </div>  
+
+            <div class="col-md-2">
+                <p for="CarBrand" class="p-0 m-0">ยี่ห้อรถ</p>
+                <p for="CarBrand" class="eng-label p-0 m-0">Car Brand</p>
+             </div>
+
+            <div class="col-md-4">
+                 <span asp-validation-for="CarBrand" class="text-danger"></span>
+                  <input class="form-control" type="text" id="CarBrand" asp-for="CarBrand"> 
+            </div>  
+        </div>
+
+        <div class="row form-group pb-2"> 
+              <div class="col-md-2">
+                <p for="CarSerie" class="p-0 m-0">รุ่นรถ</p>
+                <p for="CarSerie" class="eng-label p-0 m-0">Car Model</p>
+             </div>
+
+            <div class="col-md-4">
+                 <span asp-validation-for="CarSerie" class="text-danger"></span>
+                  <input class="form-control" type="text" id="CarSerie" asp-for="CarSerie"> 
+            </div>  
+           
+             <div class="col-md-2">
+                <p for="Cc" class="p-0 m-0">ความตุกระบอกสูบ</p>
+                <p for="Cc" class="eng-label p-0 m-0">Displacement</p>
+             </div>
+
+            <div class="col-md-4">
+                 <span asp-validation-for="Cc" class="text-danger"></span>
+                  <input class="form-control" type="tel" id="Cc" asp-for="Cc"> 
+            </div>  
+        </div>
+
+        <div class="row form-group pb-2"> 
+             <div class="col-md-2">
+                <p for="Premium" class="p-0 m-0">ค่าเบี้ยประกัน</p>
+                <p for="Premium" class="eng-label p-0 m-0">Insurance premium</p>
+             </div>
+
+            <div class="col-md-4">
+                 <span asp-validation-for="Premium" class="text-danger"></span>
+                  <input class="form-control" type="number" id="Premium" asp-for="Premium"> 
+            </div>   
+
+            <div class="col-md-2">
+                <p for="Limit" class="p-0 m-0">วงเงินเอาประกัน</p>
+                <p for="Limit" class="eng-label p-0 m-0">Insured limit</p>
+             </div>
+
+            <div class="col-md-4">
+                 <span asp-validation-for="Limit" class="text-danger"></span>
+                 <input class="form-control" type="number" id="Limit" asp-for="Limit"/> 
+            </div>   
+        </div>
+
+        <div class="row form-group pb-2"> 
+             <div class="col-md-2">
+                <p for="StartDate" class="p-0 m-0">วันเริ่มคุ้มครอง</p>
+                <p for="StartDate" class="eng-label p-0 m-0">Protection start date</p>
+             </div>
+
+            <div class="col-md-4">
+                 <span asp-validation-for="StartDate" class="text-danger"></span>
+                  <input class="form-control" type="date" id="StartDate" asp-for="StartDate"> 
+            </div>   
+
+            <div class="col-md-2">
+                <p for="EndDate" class="p-0 m-0">วันสิ้นสุดความคุ้มครอง</p>
+                <p for="EndDate" class="eng-label p-0 m-0">Protection end date</p>
+             </div>
+
+            <div class="col-md-4">
+                 <span asp-validation-for="EndDate" class="text-danger"></span>
+                  <input class="form-control" type="date" id="EndDate" asp-for="EndDate"> 
+            </div>   
+        </div>
+
+        <div class="clearfix pb-2">
+            <button type="submit" class="btn btn-success float-end px-5">ตกลงสั่งซื้อประกัน</button>
+        </div>
+    </div> 
+  </div>  
+  </form>
+  </div>
+
+@section Scripts{ 
+    <script>
+    const insuraceType = document.querySelector("#TypeId");
+    const Price = document.querySelector("#Price");
+
+    function tooglePriceInput() {
+        insuraceType.value != "nulls" ? Price.disabled = false : Price.disabled = true;
+    }
+    </script>
+  }

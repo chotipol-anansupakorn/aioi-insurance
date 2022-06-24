@@ -1,0 +1,188 @@
+﻿@model IEnumerable<aioi_insurance.Models.viewModel.ContractDetail>
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}  
+@foreach(var item in Model){
+    <!-- ลูกค้า -->
+      <div class="card mb-3">
+          <div class="card-header">
+            ข้อมูลลูกค้า
+          </div> 
+
+        <div class="content p-3">
+               <div class="row form-group pb-2"> 
+                  <div class="col-2">
+                    <p for="name" class="p-0 m-0">เลขสมาชิก</p>
+                    <p for="name" class="eng-label p-0 m-0">Customer ID</p>
+                 </div>
+
+                <div class="col-4"> 
+                      <p class="form-control" id="name">@item!.Customer!.CusId</p>
+                </div> 
+                
+                <div class="col-2">
+                    <p for="name" class="p-0 m-0">ชื่อ - สกุล</p>
+                    <p for="name" class="eng-label p-0 m-0">Fullname</p>
+                 </div>
+
+                <div class="col-4"> 
+                      <p class="form-control" id="name">@item?.NameTitle?.Title @item?.Customer?.Name @item?.Customer?.Surname</p>
+                </div>  
+            </div>
+
+             <div class="row form-group pb-2"> 
+                  <div class="col-md-2">
+                    <p for="dob" class="p-0 m-0">วันเกิด</p>
+                    <p for="dob" class="eng-label p-0 m-0">Birthday</p>
+                 </div>
+
+                <div class="col-md-4"> 
+                      <p class="form-control" id="dob">@item?.Customer?.Dob</p>
+                </div>  
+           
+                 <div class="col-md-2">
+                    <p for="tel" class="p-0 m-0">โทร</p>
+                    <p for="tel" class="eng-label p-0 m-0">Tel</p>
+                 </div>
+
+                <div class="col-md-4"> 
+                      <p class="form-control" id="tel">@item?.Customer?.Tel</p>
+                </div>  
+            </div>
+
+             <div class="row form-group pb-2"> 
+                <div class="col-md-2">
+                    <p for="mail" class="p-0 m-0">อีเมล์</p>
+                    <p for="mail" class="eng-label p-0 m-0">Email</p>
+                 </div>
+
+                <div class="col-md-4">
+                      <p class="form-control" id="mail">@item?.Customer?.Email</p>
+                </div>
+                
+                  <div class="col-md-2">
+                    <p for="mail" class="p-0 m-0">วีนลงทะเบียน</p>
+                    <p for="mail" class="eng-label p-0 m-0">Registration Date</p>
+                 </div>
+
+                <div class="col-md-4">
+                      <p class="form-control" id="mail">@item?.Customer?.RegistDate</p>
+                </div>
+            </div>
+             
+        </div>
+      </div>
+
+
+
+    <!-- ประกัน -->
+    <div class="card mb-3">
+      <div class="card-header">
+        ข้อมูลประกันภัย
+      </div>  
+       
+    <div class="content p-3"> 
+           <div class="row form-group pb-2"> 
+              <div class="col-md-2">
+                <p for="title" class="p-0 m-0">ประเภทประกันภัย</p>
+                <p for="title" class="eng-label p-0 m-0">Insurance Type</p>
+             </div>
+             <div class="col-md-4">  
+                  <p id="TypeId" class="form-control">@item?.ContractType?.Name</p>
+            </div>
+
+            <div class="col-md-2">
+                <p for="Price" class="p-0 m-0">ราคา</p>
+                <p for="Price" class="eng-label p-0 m-0">Insurance Price</p>
+             </div>
+
+            <div class="col-md-4">
+                  <p id="Price" class="form-control">@item?.Contract?.Price</p> 
+            </div>   
+         </div>
+             
+         <div class="row form-group pb-2">                
+             <div class="col-md-2">
+                <p for="LicenseNo" class="p-0 m-0">ทะเบียนรถ</p>
+                <p for="LicenseNo" class="eng-label p-0 m-0">lincense Plate</p>
+             </div>
+
+            <div class="col-md-4"> 
+                  <p class="form-control" id="LicenseNo">@item?.Contract?.LicenseNo</p>
+            </div>  
+
+            <div class="col-md-2">
+                <p for="CarBrand" class="p-0 m-0">ยี่ห้อรถ</p>
+                <p for="CarBrand" class="eng-label p-0 m-0">Car Brand</p>
+             </div>
+
+            <div class="col-md-4"> 
+                  <p class="form-control" id="CarBrand">@item?.Contract?.CarBrand</p>
+            </div>  
+        </div>
+
+        <div class="row form-group pb-2"> 
+              <div class="col-md-2">
+                <p for="CarSerie" class="p-0 m-0">รุ่นรถ</p>
+                <p for="CarSerie" class="eng-label p-0 m-0">Car Model</p>
+             </div>
+
+            <div class="col-md-4">
+                  <p class="form-control" id="CarSerie">@item?.Contract?.CarSerie</p>
+            </div>  
+           
+             <div class="col-md-2">
+                <p for="Cc" class="p-0 m-0">ความตุกระบอกสูบ</p>
+                <p for="Cc" class="eng-label p-0 m-0">Displacement</p>
+             </div>
+
+            <div class="col-md-4">
+                  <p class="form-control" id="Cc">@item?.Contract?.Cc</p> 
+            </div>  
+        </div>
+
+        <div class="row form-group pb-2"> 
+             <div class="col-md-2">
+                <p for="Premium" class="p-0 m-0">ค่าเบี้ยประกัน</p>
+                <p for="Premium" class="eng-label p-0 m-0">Insurance premium</p>
+             </div>
+
+            <div class="col-md-4">
+                  <p class="form-control" id="Premium">@item?.Contract?.Premium</p>
+            </div>   
+
+            <div class="col-md-2">
+                <p for="Limit" class="p-0 m-0">วงเงินเอาประกัน</p>
+                <p for="Limit" class="eng-label p-0 m-0">Insured limit</p>
+             </div>
+
+            <div class="col-md-4"> 
+                  <p class="form-control" id="Limit">@item?.Contract?.Limit</p>
+            </div>   
+        </div>
+
+         <div class="row form-group pb-2"> 
+             <div class="col-md-2">
+                <p for="StartDate" class="p-0 m-0">วันเริ่มคุ้มครอง</p>
+                <p for="StartDate" class="eng-label p-0 m-0">Protection start date</p>
+             </div>
+
+            <div class="col-md-4"> 
+                  <p class="form-control" id="StartDate">@item?.Contract?.StartDate</p>
+            </div>   
+
+            <div class="col-md-2">
+                <p for="EndDate" class="p-0 m-0">วันสิ้นสุดความคุ้มครอง</p>
+                <p for="EndDate" class="eng-label p-0 m-0">Protection end date</p>
+             </div>
+
+            <div class="col-md-4">
+                  <p class="form-control" id="EndDate">@item?.Contract?.EndDate</p>
+            </div>   
+        </div>
+
+         </div>
+    </div> 
+}   

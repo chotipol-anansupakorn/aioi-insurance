@@ -1,0 +1,44 @@
+﻿@model IEnumerable<aioi_insurance.Models.viewModel.ContractDetail>
+@{
+    ViewData["Title"] = "Home Page";
+    var i = 1;
+}
+
+<div class="text-center">
+    <h1 class="display-4">รายการกรมธรรม์</h1> 
+</div>
+<form asp-controller="Home" asp-action="Index" id="searchBox" method="get" class="text-center"> 
+      <div class="form-group">
+           <input class="form-control" type="text" id="txt" name="SearchString" placeholder="ใส่หมายเลขสมาชิก,ชื่อ-นามสกุล,เบอร์โทรฯ,เลขกรมธรรม์ เพื่อค้นหา" />  
+      </div>
+</form>
+        <table class="table table-striped text-center">
+          <thead>
+            <tr class="">
+              <th scope="col">#</th>
+              <th scope="col">code</th>
+              <th scope="col">name</th>
+              <th scope="col">contract id</th>
+              <th scope="col">type</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>  
+              @{
+                  foreach(var item in Model){
+
+            <tr>
+              <th scope="row">@i</th>
+              <td>@item?.Contract?.CusId</td>
+              <td>@item?.NameTitle?.Title @item?.Customer?.Name @item?.Customer?.Surname</td>
+              <td>@item?.Contract?.ContractId</td>
+              <td>@item?.ContractType?.Name</td>
+              <td>
+                  <a asp-controller="Home" asp-action="Detail" asp-route-id="@item?.Contract?.ContractId" class="btn btn-success">Detail</a> 
+              </td>
+            </tr>
+                i++;
+                } 
+              }
+          </tbody>
+ </table>     

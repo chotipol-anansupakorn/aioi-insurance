@@ -1,0 +1,17 @@
+﻿@model aioi_insurance.Models.viewModel.ContractDetail
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<script>
+  function resizeIframe(obj) {
+    obj.style.height = obj.contentWindow.document.documentElement.scrollHeight + 'px';
+  }
+</script>
+
+<div class="container"> 
+  
+    <iframe src="@Url.Action("CreateCustomer","Register")" frameborder="0" scrolling="no" onload="resizeIframe(this)"></iframe>
+    <iframe src="@Url.Action("CreateContract","Register")" frameborder="0" scrolling="no" onload="resizeIframe(this)"></iframe>
+</div>
